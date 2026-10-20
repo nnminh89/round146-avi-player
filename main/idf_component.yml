@@ -1,0 +1,8 @@
+## Versions tested on the board (2026-10-20). `idf.py build` downloads them.
+dependencies:
+  idf: ">=6.0"
+  espressif/esp_lcd_spd2010: "~2.0.0"
+  espressif/esp_lcd_touch_spd2010: "~2.1.0"
+  espressif/esp_io_expander_tca9554: "~2.0.3"
+  espressif/avi_player: "~2.0.0"
+  espressif/esp_new_jpeg: "~1.0.2"

@@ -1,0 +1,20 @@
+menu "Round AVI player"
+
+    config PLAYER_BACKLIGHT
+        int "Backlight (%)"
+        range 5 100
+        default 80
+
+    config PLAYER_VOLUME
+        int "Speaker volume on first boot (%)"
+        range 0 100
+        default 70
+        help
+            Afterwards the menu's slider sets it (kept across restarts).
+
+    config PLAYER_POWER_HOLD_MS
+        int "Hold PWR this long to switch off (ms)"
+        range 500 10000
+        default 2000
+
+endmenu
