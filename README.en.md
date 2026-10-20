@@ -43,6 +43,13 @@ icon menu (sound on/off, next video, loop one video / play all, volume).
 | Measured on the board | 412×412 decode ≈ 27 ms/frame (enough for ~30 fps); a 24 fps video with sound runs at ~23 fps |
 | Firmware | ESP-IDF **6.0.2**, C++17, ~450 KB |
 
+## Sample videos
+
+To try it right away: download 4 ready-converted videos (412×412, 24 fps, 30 s, 3 with sound) from
+[Releases → Sample videos](https://github.com/nnminh89/round146-avi-player/releases/tag/samples), copy them to the
+card and insert it into the board. The clips show Dragon Ball characters (© Bird Studio / Toei Animation) — for
+testing in this private repository only, do not redistribute.
+
 ## 1. Prepare the videos
 
 The board cannot decode MP4/H.264/HEVC → convert to **AVI with MJPEG + PCM**. You need `ffmpeg`:

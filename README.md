@@ -43,6 +43,13 @@ bằng icon (tắt/bật tiếng, video kế tiếp, lặp 1 video / phát tất
 | Hiệu năng đo trên board | Giải mã 412×412 ≈ 27 ms/khung (đủ ~30 fps); video 24 fps có tiếng chạy ~23 fps |
 | Firmware | ESP-IDF **6.0.2**, C++17, ~450 KB |
 
+## Video mẫu
+
+Muốn thử ngay: tải 4 video đã chuyển sẵn (412×412, 24 fps, 30 giây, 3 file có tiếng) ở
+[Releases → Sample videos](https://github.com/nnminh89/round146-avi-player/releases/tag/samples), chép vào thẻ rồi
+cắm vào board. Các clip có nhân vật Dragon Ball (© Bird Studio / Toei Animation) — chỉ dùng thử trong repo riêng này,
+không phát tán.
+
 ## 1. Tạo video
 
 Board không giải mã được MP4/H.264/HEVC → phải chuyển sang **AVI MJPEG + PCM**. Cần `ffmpeg`:
