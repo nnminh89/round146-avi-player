@@ -1,5 +1,7 @@
 # Round AVI Player — Waveshare ESP32-S3 1.46" Round Display
 
+**Tiếng Việt** | [English](README.en.md)
+
 Firmware phát video **AVI từ thẻ microSD** lên màn hình tròn 412×412 của board
 **Waveshare ESP32-S3-Touch-LCD-1.46 / 1.46B**. Cắm thẻ có video vào là tự phát; chạm màn hình mở menu điều khiển
 bằng icon (tắt/bật tiếng, video kế tiếp, lặp 1 video / phát tất cả, âm lượng).
