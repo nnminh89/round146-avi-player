@@ -1,110 +1,110 @@
 # Round AVI Player — Waveshare ESP32-S3 1.46" Round Display
 
-**Tiếng Việt** | [English](README.en.md)
+**English** | [Tiếng Việt](README.vi.md)
 
-Firmware phát video **AVI từ thẻ microSD** lên màn hình tròn 412×412 của board
-**Waveshare ESP32-S3-Touch-LCD-1.46 / 1.46B**. Cắm thẻ có video vào là tự phát; chạm màn hình mở menu điều khiển
-bằng icon (tắt/bật tiếng, video kế tiếp, lặp 1 video / phát tất cả, âm lượng).
+Firmware that plays **AVI videos from a microSD card** on the 412×412 round screen of the
+**Waveshare ESP32-S3-Touch-LCD-1.46 / 1.46B**. Insert a card with videos and it starts playing; tap the screen for an
+icon menu (sound on/off, next video, loop one video / play all, volume).
 
-![Menu (bình thường / đã tắt tiếng) và màn "Video not found"](docs/screens.png)
+![Menu (normal / muted) and the "Video not found" screen](docs/screens.png)
 
-## Tính năng
+## Features
 
-- Tự quét mọi file `.avi` trên thẻ (cả thư mục con, sâu 4 cấp), sắp theo tên, bỏ qua file ẩn — kể cả file rác `._ten.avi`
-  mà macOS tạo khi chép vào thẻ FAT.
-- Phát video MJPEG 412×412 tới ~30 khung/giây, kèm tiếng PCM ra loa trên mạch.
-- **Chạm màn hình** → menu đè lên video (video vẫn chạy), chỉ có icon, không chữ:
+- Finds every `.avi` file on the card (subfolders too, 4 levels deep), sorted by name, skipping hidden files — including
+  the `._name.avi` junk files macOS writes when copying to a FAT card.
+- Plays 412×412 MJPEG video at up to ~30 frames per second, with PCM sound on the onboard speaker.
+- **Tap the screen** → a menu appears over the video (which keeps playing). Icons only, no text:
 
-  | Nút | Tác dụng |
+  | Button | Action |
   |---|---|
-  | 🔊 / 🔇 (trái) | Tắt / bật tiếng — nút chuyển **đỏ** khi đang tắt |
-  | ⏭ (giữa) | Sang video kế tiếp; hết danh sách thì quay lại video đầu |
-  | 🔂 / 🔁 (phải) | 🔂 **lặp 1 video** / 🔁 **phát lần lượt tất cả** rồi quay lại đầu |
-  | Thanh trượt (dưới) | Âm lượng — kéo ngang |
+  | 🔊 / 🔇 (left) | Sound off / on — the button turns **red** while muted |
+  | ⏭ (middle) | Next video; after the last one, back to the first |
+  | 🔂 / 🔁 (right) | 🔂 **loop one video** / 🔁 **play all videos** in turn, then start over |
+  | Slider (bottom) | Volume — drag sideways |
 
-  Chạm ra ngoài các nút, hoặc 4 giây không chạm → menu tự ẩn. Tắt tiếng, chế độ, âm lượng được lưu vào flash (tắt nguồn
-  vẫn nhớ).
-- **Nút PWR**: chỉ có mở / tắt (không có chế độ ngủ). Chạy pin: bấm để mở, **giữ 2 giây để tắt** hẳn.
-- Không có thẻ / không có video → màn đen, chữ trắng **"Video not found"**; tự kiểm tra lại mỗi 3 giây, cắm thẻ vào là
-  phát.
+  Tap outside the buttons, or wait 4 seconds, and the menu hides. Mute, mode and volume are saved in flash (kept across
+  power cycles).
+- **PWR button**: on / off only (no sleep mode). On battery: press to switch on, **hold for 2 seconds to switch off**.
+- No card / no video → black screen with white **"Video not found"**; the card is checked again every 3 seconds, so it
+  starts playing as soon as a card with videos goes in.
 
-## Thông số
+## Specifications
 
-| Hạng mục | Giá trị |
+| Item | Value |
 |---|---|
 | Board | Waveshare ESP32-S3-Touch-LCD-1.46 / 1.46B |
-| Chip | ESP32-S3R8 — 2 nhân 240 MHz, 8 MB PSRAM octal, 16 MB flash |
-| Màn hình | 1.46" tròn IPS 412×412, driver SPD2010, QSPI 40 MHz |
-| Cảm ứng | SPD2010 (I2C 0x53) |
-| Âm thanh | PCM5101 (I2S) → loa trên mạch |
-| Thẻ nhớ | microSD SDMMC 1-bit 40 MHz, FAT32 / exFAT |
-| Video | AVI, hình **MJPEG baseline**, fps **nguyên** (15/20/24/30), tốt nhất **412×412** |
-| Âm thanh trong video | **PCM 16-bit** mono/stereo, tần số bất kỳ (MP3/AAC: chỉ có hình, không tiếng) |
-| Hiệu năng đo trên board | Giải mã 412×412 ≈ 27 ms/khung (đủ ~30 fps); video 24 fps có tiếng chạy ~23 fps |
+| Chip | ESP32-S3R8 — dual core 240 MHz, 8 MB octal PSRAM, 16 MB flash |
+| Display | 1.46" round IPS 412×412, SPD2010 driver, QSPI at 40 MHz |
+| Touch | SPD2010 (I2C 0x53) |
+| Audio | PCM5101 (I2S) → onboard speaker |
+| Card | microSD, SDMMC 1-bit at 40 MHz, FAT32 / exFAT |
+| Video | AVI, **baseline MJPEG** pictures, **whole-number** fps (15/20/24/30), best at **412×412** |
+| Soundtrack | **16-bit PCM**, mono/stereo, any sample rate (MP3/AAC: picture only, no sound) |
+| Measured on the board | 412×412 decode ≈ 27 ms/frame (enough for ~30 fps); a 24 fps video with sound runs at ~23 fps |
 | Firmware | ESP-IDF **6.0.2**, C++17, ~450 KB |
 
-## Video mẫu
+## Sample videos
 
-Muốn thử ngay: tải 4 video đã chuyển sẵn (412×412, 24 fps, 30 giây, 3 file có tiếng) ở
-[Releases → Sample videos](https://github.com/nnminh89/round146-avi-player/releases/tag/samples), chép vào thẻ rồi
-cắm vào board. Các clip có nhân vật Dragon Ball (© Bird Studio / Toei Animation) — chỉ dùng thử trong repo riêng này,
-không phát tán.
+To try it right away: download 4 ready-converted videos (412×412, 24 fps, 30 s, 3 with sound) from
+[Releases → Sample videos](https://github.com/nnminh89/round146-avi-player/releases/tag/samples), copy them to the
+card and insert it into the board. The clips show Dragon Ball characters (© Bird Studio / Toei Animation) — for
+testing in this private repository only, do not redistribute.
 
-## 1. Tạo video
+## 1. Prepare the videos
 
-Board không giải mã được MP4/H.264/HEVC → phải chuyển sang **AVI MJPEG + PCM**. Cần `ffmpeg`:
+The board cannot decode MP4/H.264/HEVC → convert to **AVI with MJPEG + PCM**. You need `ffmpeg`:
 
-| Hệ điều hành | Cài ffmpeg |
+| OS | Install ffmpeg |
 |---|---|
 | macOS | `brew install ffmpeg` |
 | Ubuntu / Debian | `sudo apt install ffmpeg` |
-| Windows | `winget install ffmpeg` (hoặc tải ở ffmpeg.org) |
+| Windows | `winget install ffmpeg` (or download from ffmpeg.org) |
 
-### macOS / Linux — dùng script kèm theo
+### macOS / Linux — with the included script
 
 ```bash
-tools/convert.sh video1.mp4 video2.mov        # ra video1.avi, video2.avi cạnh file gốc
-FPS=24 tools/convert.sh clip.mp4              # mượt hơn (mặc định 20 fps)
-FPS=15 QUALITY=8 tools/convert.sh clip.mp4    # nhẹ hơn nếu bị giật
-MUTE=1 tools/convert.sh clip.mp4              # bỏ tiếng
+tools/convert.sh video1.mp4 video2.mov        # writes video1.avi, video2.avi next to the originals
+FPS=24 tools/convert.sh clip.mp4              # smoother (default is 20 fps)
+FPS=15 QUALITY=8 tools/convert.sh clip.mp4    # lighter, if playback stutters
+MUTE=1 tools/convert.sh clip.mp4              # drop the sound
 ```
 
-| Biến | Mặc định | Ý nghĩa |
+| Variable | Default | Meaning |
 |---|---|---|
-| `FPS` | 20 | Khung/giây (số nguyên). 24 chạy tốt ở 412×412; 30 sát giới hạn |
-| `QUALITY` | 6 | Chất lượng JPEG: 2 = đẹp nhất / file to … 31 = xấu nhất / nhẹ nhất |
-| `MUTE` | 0 | `1` = bỏ tiếng |
+| `FPS` | 20 | Frames per second (whole number). 24 runs well at 412×412; 30 is close to the limit |
+| `QUALITY` | 6 | JPEG quality: 2 = best / biggest file … 31 = worst / smallest |
+| `MUTE` | 0 | `1` = no sound |
 
-Script cắt video thành **412×412 vừa khít màn** (video không vuông thì cắt bớt 2 bên, giữ phần giữa), hình MJPEG
-`yuvj420p`, tiếng PCM 16-bit mono 22050 Hz.
+The script crops the video to **412×412, filling the screen** (non-square videos lose their sides and keep the middle),
+MJPEG `yuvj420p` pictures, 16-bit mono PCM sound at 22050 Hz.
 
-### Windows (hoặc chạy tay) — lệnh ffmpeg tương đương
+### Windows (or by hand) — the equivalent ffmpeg command
 
 ```bash
 ffmpeg -i input.mp4 -vf "fps=24,scale=412:412:force_original_aspect_ratio=increase,crop=412:412" -c:v mjpeg -q:v 6 -pix_fmt yuvj420p -c:a pcm_s16le -ar 22050 -ac 1 output.avi
 ```
 
-Bỏ tiếng: thay `-c:a pcm_s16le -ar 22050 -ac 1` bằng `-an`.
+Without sound: replace `-c:a pcm_s16le -ar 22050 -ac 1` with `-an`.
 
-### Mẹo
+### Tips
 
-- Màn tròn: **4 góc của khung vuông bị khuất** → để nội dung chính ở giữa.
-- Video nhỏ hơn 412×412 được đặt giữa màn (viền đen); lớn hơn thì firmware tự thu nhỏ — chạy chậm hơn, nên chuyển về
-  412×412 trước.
-- Video 30 giây 412×412 24 fps có tiếng ≈ 15 MB.
-- Nếu hình chạy chậm hơn thực tế hoặc tiếng rè: giảm `FPS` hoặc tăng `QUALITY`.
+- Round screen: **the 4 corners of the square frame are hidden** → keep the important part in the middle.
+- Videos smaller than 412×412 are centred (black border); larger ones are scaled down by the firmware — slower, so
+  convert to 412×412 beforehand.
+- A 30-second 412×412 24 fps video with sound is about 15 MB.
+- If the picture runs slower than real time or the sound crackles: lower `FPS` or raise `QUALITY`.
 
-## 2. Chép video vào thẻ microSD
+## 2. Copy the videos to the microSD card
 
-1. Format thẻ **FAT32** (thẻ > 32 GB dùng **exFAT**).
-2. Chép các file `.avi` vào thẻ — để ở thư mục gốc hoặc thư mục con đều được. Tên file tiếng Việt được.
-3. **Thứ tự phát = thứ tự tên** (không phân biệt hoa thường). Muốn sắp xếp: đặt tên `01_...avi`, `02_...avi`…
-4. macOS: chép bằng Finder vẫn được (file `._...` tự bị bỏ qua); rút thẻ bằng **Eject** trước khi lấy ra.
-5. Cắm thẻ vào board (có thể cắm lúc board đang chạy — tối đa 3 giây sau là phát).
+1. Format the card as **FAT32** (cards over 32 GB: **exFAT**).
+2. Copy the `.avi` files to the card — the root or any subfolder. Non-ASCII file names are fine.
+3. **Play order = name order** (case-insensitive). To choose the order, name the files `01_...avi`, `02_...avi`, …
+4. macOS: copying with Finder is fine (the `._...` files are skipped); **Eject** the card before pulling it out.
+5. Insert the card into the board (also while it is running — playback starts within 3 seconds).
 
-## 3. Build & nạp firmware
+## 3. Build & flash the firmware
 
-### Cài ESP-IDF 6.0.2 (một lần)
+### Install ESP-IDF 6.0.2 (once)
 
 macOS / Linux:
 
@@ -114,68 +114,68 @@ git clone -b v6.0.2 --recursive https://github.com/espressif/esp-idf.git esp-idf
 cd esp-idf-v6.0.2 && ./install.sh esp32s3
 ```
 
-Windows: dùng **ESP-IDF Installer** (chọn bản v6.0.2) ở trang Espressif, rồi mở "ESP-IDF 6.0 CMD".
+Windows: use the **ESP-IDF Installer** from Espressif (pick v6.0.2), then open "ESP-IDF 6.0 CMD".
 
 ### Build
 
 ```bash
-. ~/esp/esp-idf-v6.0.2/export.sh          # mỗi lần mở terminal mới
+. ~/esp/esp-idf-v6.0.2/export.sh          # in every new terminal
 git clone https://github.com/nnminh89/round146-avi-player.git
 cd round146-avi-player
-idf.py set-target esp32s3                 # lần đầu
+idf.py set-target esp32s3                 # first time only
 idf.py build
 ```
 
-Lần build đầu `idf.py` tự tải các thư viện của Espressif (phiên bản khoá trong `dependencies.lock`):
+The first build downloads Espressif's libraries (versions locked in `dependencies.lock`):
 `esp_lcd_spd2010`, `esp_lcd_touch_spd2010`, `esp_io_expander_tca9554`, `avi_player`, `esp_new_jpeg`.
 
-### Nạp (flash)
+### Flash
 
-Cắm board bằng cổng USB-C, rồi:
+Connect the board through its USB-C port, then:
 
 ```bash
 idf.py -p /dev/cu.usbmodem* flash monitor     # macOS
 idf.py -p /dev/ttyACM0 flash monitor          # Linux
-idf.py -p COM5 flash monitor                  # Windows (xem số COM trong Device Manager)
+idf.py -p COM5 flash monitor                  # Windows (find the COM number in Device Manager)
 ```
 
-- Thoát `monitor`: `Ctrl+]`.
-- Không nhận cổng / nạp lỗi: giữ **BOOT**, bấm **RESET** (hoặc cắm lại USB khi đang giữ BOOT), nhả BOOT rồi nạp lại.
-  Sau khi nạp bấm RESET để chạy.
+- Leave `monitor` with `Ctrl+]`.
+- Port not found / flashing fails: hold **BOOT**, press **RESET** (or plug USB in while holding BOOT), release BOOT and
+  flash again. Press RESET afterwards to run.
 
-### Tuỳ chỉnh (`idf.py menuconfig` → **Round AVI player**)
+### Settings (`idf.py menuconfig` → **Round AVI player**)
 
-| Mục | Mặc định |
+| Option | Default |
 |---|---|
 | Backlight (%) | 80 |
-| Speaker volume on first boot (%) — sau đó dùng thanh trượt trên menu | 70 |
+| Speaker volume on first boot (%) — afterwards the menu slider sets it | 70 |
 | Hold PWR this long to switch off (ms) | 2000 |
 
-Sửa `sdkconfig.defaults` thì xoá file `sdkconfig` rồi build lại để áp dụng.
+After editing `sdkconfig.defaults`, delete `sdkconfig` and build again to apply it.
 
-## 4. Sử dụng
+## 4. Usage
 
-| Thao tác | Kết quả |
+| Action | Result |
 |---|---|
-| Bật nguồn (pin: bấm PWR; hoặc cắm USB) | Quét thẻ, phát video đầu tiên |
-| Chạm màn hình | Mở menu |
-| Nút trái / giữa / phải trên menu | Tắt-bật tiếng / video kế / lặp 1 – phát tất cả |
-| Kéo thanh dưới | Âm lượng (thang bình phương — nghe đều tai) |
-| Chạm ngoài nút / chờ 4 giây | Ẩn menu |
-| Giữ PWR 2 giây | Tắt. Đang cắm USB thì không cắt được điện: màn tối, dừng video, bấm PWR để mở lại |
+| Power on (battery: press PWR; or plug in USB) | Scans the card, plays the first video |
+| Tap the screen | Opens the menu |
+| Left / middle / right menu button | Sound on-off / next video / loop one – play all |
+| Drag the bottom slider | Volume (squared scale — sounds even to the ear) |
+| Tap outside the buttons / wait 4 s | Hides the menu |
+| Hold PWR for 2 s | Switches off. On USB power it cannot cut the power: the screen goes dark and the video stops; press PWR to start again |
 
-## 5. Xử lý sự cố
+## 5. Troubleshooting
 
-| Hiện tượng | Nguyên nhân / cách xử lý |
+| Symptom | Cause / fix |
 |---|---|
-| "Video not found" | Không có thẻ, thẻ không phải FAT32/exFAT, hoặc không có file `.avi`, hoặc file không phải MJPEG → chuyển lại bằng `tools/convert.sh` |
-| Có hình không có tiếng | Tiếng trong file là MP3/AAC → chuyển lại bằng script (PCM); hoặc đang tắt tiếng / âm lượng 0 trên menu |
-| Video chạy chậm, tiếng rè | Giảm `FPS` (20 hoặc 15), tăng `QUALITY`, hoặc đảm bảo video đúng 412×412 |
-| Màn đen nhưng log báo đang phát | Đèn nền bị khoá — nạp lại firmware mới nhất (đã xử lý lúc khởi động) |
-| Bấm nút trái ra tác dụng nút phải | Trục cảm ứng bị lật trên bản board khác — báo lại để thêm cấu hình lật trục |
-| Không nạp được | Vào chế độ nạp bằng BOOT + RESET (xem trên) |
+| "Video not found" | No card, card not FAT32/exFAT, no `.avi` file, or files are not MJPEG → convert again with `tools/convert.sh` |
+| Picture but no sound | The soundtrack is MP3/AAC → convert again with the script (PCM); or muted / volume 0 in the menu |
+| Video runs slow, sound crackles | Lower `FPS` (20 or 15), raise `QUALITY`, or make sure the video is exactly 412×412 |
+| Dark screen although the log says it is playing | Backlight pin stuck — flash the latest firmware (it releases the pins at start-up) |
+| The left button does what the right one should | Touch axis mirrored on another board revision — report it so an axis flip option can be added |
+| Cannot flash | Enter download mode with BOOT + RESET (see above) |
 
-Log chi tiết (danh sách video, fps thực tế, thời gian giải mã, lỗi thẻ) xem bằng `idf.py monitor`:
+Details (video list, real frame rate, decode time, card errors) are in the `idf.py monitor` log:
 
 ```
 I (933) player: 3 video(s) on the card
@@ -184,51 +184,53 @@ I (1080) audio: sound 22050 Hz, mono
 I (5907) video: 22.9 fps shown, 412x412, decode 27.7 ms/frame
 ```
 
-## Phần cứng — chân đã dùng
+## Hardware — pins used
 
-Theo wiki Waveshare và firmware xiaozhi cho board này.
+From the Waveshare wiki and the xiaozhi firmware for this board.
 
-| Chức năng | Chân |
+| Function | Pins |
 |---|---|
-| Màn SPD2010 QSPI | CLK 40, CS 21, D0–D3 46/45/42/41, đèn nền 5 (PWM) |
-| I2C (cảm ứng SPD2010, TCA9554) | SDA 11, SCL 10; ngắt cảm ứng 4 |
-| TCA9554 (I2C) | EXIO0–2 reset màn + cảm ứng; EXIO3 = D3 thẻ SD (giữ mức cao) |
+| SPD2010 display, QSPI | CLK 40, CS 21, D0–D3 46/45/42/41, backlight 5 (PWM) |
+| I2C (SPD2010 touch, TCA9554) | SDA 11, SCL 10; touch interrupt 4 |
+| TCA9554 (I2C) | EXIO0–2 display + touch reset; EXIO3 = SD card D3 (held high) |
 | microSD (SDMMC 1-bit) | CLK 14, CMD 17, D0 16 |
-| Loa (PCM5101, I2S) | BCK 48, LRCK 38, DIN 47 |
-| Nút PWR | GPIO6 (mức thấp khi bấm) |
-| Giữ nguồn pin | GPIO7 = 1 khi chạy, thả về 0 để tắt |
+| Speaker (PCM5101, I2S) | BCK 48, LRCK 38, DIN 47 |
+| PWR button | GPIO6 (low while pressed) |
+| Battery power latch | GPIO7 = 1 while running, back to 0 to switch off |
 
-## Cấu trúc mã
+## Code layout
 
 ```
 main/
-  main.cpp        gắn thẻ, quét .avi, điều khiển phát / lặp / chuyển video, nút PWR
-  board.*         nguồn, I2C, TCA9554, màn SPD2010 (vẽ qua 2 buffer DMA trong RAM trong + hook trộn lớp phủ),
-                  đèn nền, cảm ứng, tắt nguồn
-  video.*         MJPEG → RGB565 vào 2 khung PSRAM; task hiển thị gửi khung này trong lúc giải mã khung sau
-  audio.*         PCM → I2S → PCM5101, âm lượng / tắt tiếng
-  ui.*            menu chạm: 3 nút icon + thanh âm lượng, vẽ khử răng cưa, trộn lên video, lưu NVS;
-                  màn "Video not found"
-  icons.h         icon + chữ (sinh bằng tools/gen_icons.py — đừng sửa tay)
+  main.cpp        card mounting, .avi scan, play / loop / next control, PWR button
+  board.*         power, I2C, TCA9554, SPD2010 display (drawn through 2 internal-RAM DMA buffers + an overlay
+                  hook), backlight, touch, power-off
+  video.*         MJPEG → RGB565 into 2 PSRAM frames; a display task sends one while the next is decoded
+  audio.*         PCM → I2S → PCM5101, volume / mute
+  ui.*            touch menu: 3 icon buttons + volume slider, anti-aliased drawing blended over the video,
+                  saved in NVS; the "Video not found" screen
+  icons.h         icons + text (generated by tools/gen_icons.py — do not edit by hand)
 tools/
-  convert.sh      chuyển video sang AVI phát được
-  gen_icons.py    vẽ icon / chữ → main/icons.h (xem trước: tools/icons_preview.png)
+  convert.sh      converts videos to playable AVI
+  gen_icons.py    draws the icons / text → main/icons.h (preview: tools/icons_preview.png)
   fonts/          Be Vietnam Pro Bold (SIL OFL)
-docs/screens.png  ảnh menu và màn báo lỗi (vẽ bằng chính code ui.cpp)
+docs/screens.png  pictures of the menu and the error screen (drawn by ui.cpp itself)
 ```
 
-### Ghi chú kỹ thuật
+### Technical notes
 
-- **SPD2010 chỉ nhận cột theo nhóm 4**: mọi vùng vẽ có x và chiều rộng là bội số của 4.
-- Khung hình giải mã vào PSRAM, rồi chép từng dải 24 dòng sang RAM trong để DMA gửi QSPI (tránh DMA đọc PSRAM).
-- `avi_player` tự canh nhịp theo fps trong header (lấy phần nguyên) → fps lẻ như 23.976 sẽ thành 23.
-- Bộ giải mã `esp_new_jpeg` chỉ thu nhỏ theo bội số 8 (412 không phải) → video lớn được thu về khung vừa nhất,
-  ví dụ 408×408.
-- Menu không dùng LVGL: ảnh menu (RGB565 + alpha) chỉ vẽ lại khi trạng thái đổi, trộn vào từng dải lúc gửi màn.
-- Không dùng deep sleep / giữ chân GPIO khi tắt: chân bị "hold" sống qua cả reset (từng làm kẹt đèn nền).
+- **The SPD2010 only takes columns in groups of 4**: every drawn area has x and width as multiples of 4.
+- Frames are decoded into PSRAM, then copied in 24-row bands to internal RAM for the QSPI DMA (no DMA reads from PSRAM).
+- `avi_player` paces playback by the fps in the header (whole part only) → 23.976 fps becomes 23.
+- The `esp_new_jpeg` decoder only scales in steps of 8 (412 is not one) → large videos are scaled to the closest fit,
+  e.g. 408×408.
+- The menu does not use LVGL: the menu image (RGB565 + alpha) is redrawn only when its state changes and is blended into
+  each band on its way to the screen.
+- No deep sleep and no GPIO hold when switching off: a held pin stays held even through a reset (it once kept the
+  backlight dark).
 
-## Giấy phép thành phần bên thứ ba
+## Third-party licenses
 
-- Thư viện Espressif (`esp_lcd_spd2010`, `esp_lcd_touch_spd2010`, `esp_io_expander_tca9554`, `avi_player`,
-  `esp_new_jpeg`): tải qua ESP Component Registry, theo giấy phép của từng gói.
-- Font **Be Vietnam Pro** — SIL Open Font License 1.1 (`tools/fonts/BeVietnamPro-Bold.OFL.txt`).
+- Espressif libraries (`esp_lcd_spd2010`, `esp_lcd_touch_spd2010`, `esp_io_expander_tca9554`, `avi_player`,
+  `esp_new_jpeg`): downloaded from the ESP Component Registry, under each package's license.
+- **Be Vietnam Pro** font — SIL Open Font License 1.1 (`tools/fonts/BeVietnamPro-Bold.OFL.txt`).
