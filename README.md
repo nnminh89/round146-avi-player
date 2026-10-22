@@ -47,8 +47,8 @@ icon menu (sound on/off, next video, loop one video / play all, volume).
 
 To try it right away: download 4 ready-converted videos (412×412, 24 fps, 30 s, 3 with sound) from
 [Releases → Sample videos](https://github.com/nnminh89/round146-avi-player/releases/tag/samples), copy them to the
-card and insert it into the board. The clips show Dragon Ball characters (© Bird Studio / Toei Animation) — for
-testing in this private repository only, do not redistribute.
+card and insert it into the board. The clips show Dragon Ball characters (© Bird Studio / Toei Animation): they are
+only for trying the player, are not covered by this repository's license, and must not be redistributed.
 
 ## 1. Prepare the videos
 

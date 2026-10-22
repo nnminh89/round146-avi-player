@@ -47,8 +47,8 @@ bằng icon (tắt/bật tiếng, video kế tiếp, lặp 1 video / phát tất
 
 Muốn thử ngay: tải 4 video đã chuyển sẵn (412×412, 24 fps, 30 giây, 3 file có tiếng) ở
 [Releases → Sample videos](https://github.com/nnminh89/round146-avi-player/releases/tag/samples), chép vào thẻ rồi
-cắm vào board. Các clip có nhân vật Dragon Ball (© Bird Studio / Toei Animation) — chỉ dùng thử trong repo riêng này,
-không phát tán.
+cắm vào board. Các clip có nhân vật Dragon Ball (© Bird Studio / Toei Animation): chỉ để thử máy phát,
+không thuộc giấy phép của repo này, không phát tán lại.
 
 ## 1. Tạo video
 
